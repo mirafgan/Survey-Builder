@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:wght@600&display=swap');
+#main{
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    padding: 20px 0;
+}
+#site_content{
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    padding: 40px 100px;
+    box-shadow: 0 0 8px #51cbee;
+    border-radius: 3px;
+    position: relative;
+}
+#site_content > span{
+    position: absolute;
+    background: #1F51FF;
+}
+.animate-1{
+    top: -3px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    animation: ltr 2.5s linear  infinite alternate ;
+}
+.animate-2{
+    top: -3px;
+    right: -3px;
+    animation: rtb 2.5s linear infinite alternate-reverse ;
+    width: 3px;
+    height: 0;
+}
+.animate-3{
+    bottom: -3px;
+    right: 0;
+    animation: btl 2.5s linear  infinite alternate;
+    height: 3px;
+    width: 0;
+}
+.animate-4{
+    bottom: -3px;
+    left: -3px;
+    width: 3px;
+    height: 0;
+    animation: btt 2.5s linear  infinite alternate-reverse ;
+}
+@keyframes ltr {
+    /* 0%{background: #1F51FF;} */
+    100%{width: 100%;background: red;}
+}
+@keyframes rtb {
+    0%{background-color: red;}
+    100%{height: calc(100% + 6px);background-color: green;}
+}
+@keyframes btl {
+    0%{background-color: green;}
+    100%{width: 100%;background-color: yellow;}
+}
+@keyframes btt {
+    0%{background-color: yellow;}
+    100%{height: calc(100% + 6px);background-color:#1F51FF;}
+}
+/* .input_form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+} */
+h1{
+    font-family: "Epilogue";
+    font-size: 1.625em;
+}
+#site_content p{
+    color: rgb(76, 76, 76);
+    font-size: 1.25em;
+    line-height: 24px ;
+    font-weight: 400 ;
+    margin: 20px 0;
+}
+#site_content label{
+    display: block;
+    margin-bottom: 10px;
+}
+input{
+    outline: none;
+    border: 1px solid #bbb;
+    border-radius: 3px;
+    padding: 6px 14px;
+    transition: .2s;
+}
+input:focus{
+    box-shadow: 0 0 8px #51cbee;
+    border-color: #000;
+}
+.input_form > div{
+    margin-bottom: 15px ;
+}
+#submitButton{
+    background: #262627;
+    color: #fff;
+    width: 100%;
+}
+#submitButton:hover{
+    background: rgba(26, 26, 27,.8);
+}
