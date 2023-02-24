@@ -963,7 +963,7 @@ form#survey_edit_form {
   outline: none;
   color: var(--blue--);
 }
-#survey_edit_form input[type='text']:not(.question_text, .choice_text), textarea :not(.question_text) {
+#survey_edit_form input[type='text']:not(.question_text, .choice_text, .survey_name), textarea :not(.question_text) {
   border: none;
   /* border-bottom: 1px solid var(--blue-30); */
   outline: none;
@@ -1277,3 +1277,4 @@ span.question_choice {
   padding: 3px;
   background: rgb(67, 67, 67);
 }
+/* Results */

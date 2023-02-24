@@ -95,7 +95,7 @@ $(() => {
         initQuestionExtraEllipsis('.fa-ellipsis-vertical');
         initQuestionDeleteButton('.delete_question');
         initQuestionSettings('.settings',newqIconClass);
-        initAddChoiceButton(`div[data-question_id="${qID}"] button.add_choice`)
+        initAddChoiceButton(`div[data-question_id="${qID}"] button.add_choice`);
     }
 
    $("#current_user_right").click(function(){
@@ -182,6 +182,7 @@ $(() => {
             // $('.question:first-of-type').click()
             initQuestionDeleteButton('.delete_question');
             initQuestionDuplicateButton('.duplicate');
+            initQuestionName('.question-container input[type="text"]:first-of-type');
         };
         
         function selectMove(reqem){
@@ -265,6 +266,7 @@ $(() => {
     "A","B","C","D","E","F","G","H","I","J","K","L","M",
     "N","O","P","Q","R","S","T","U","V","W","X","Y","Z",
   ];
+  
   $(".question-container").each((index, item) => {
     if ($(item).find(".question_choice").length !== 0) {
       $(item)
@@ -315,4 +317,11 @@ $(() => {
   }
   initcustomSelect('.selects')
   $('#publish').click(()=> $('form').submit())
+  function initQuestionName(selector){
+    $(selector).on('input', function(){
+        let index = $('.question-container').index($(this).parents('.question-container'));
+        $('.question').eq(index).find('.question-title').text($(this).val())
+    })
+  }
+  initQuestionName('.question-container input[type="text"]:first-of-type')
 })

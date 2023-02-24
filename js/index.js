@@ -3,6 +3,7 @@ $(() => {
   let check;
   let check_radio;
   let type;
+  let start = new Date()
   const alphabet = [
     "A","B","C","D","E","F","G","H","I","J","K","L","M",
     "N","O","P","Q","R","S","T","U","V","W","X","Y","Z",
@@ -14,32 +15,19 @@ $(() => {
       }  
   })
   $(".choice_container").click(function () {
-      check = $(this).find('input[type=checkbox]').prop("checked");
-      check_radio = $(this).find('input[type=radio]').prop("checked") 
-      type = $(this).find('input').attr('type')
-      if(check){
-         $(this).removeClass("choice_selected");
-         $(this).find('input[type=checkbox]').prop('checked',false)
+    check = $(this).find('input[type=checkbox]').prop("checked");
+    type = $(this).find('input').attr('type');
+    if(type == "checkbox"){
+        check = !check
+        $(this).toggleClass("choice_selected");
+        $(this).toggle($(this).find('input[type=checkbox]').prop('checked',check))
       }
-      else if(!check){
-          $(this).addClass("choice_selected");
-        $(this).find('input[type=checkbox]').prop('checked',true)
-      }
-      if(type=="radio"){
-              $(".choice_container input[type='radio']").each((index,item)=>{
-              $(item).parents('.choice_container').removeClass("choice_selected");
-              $(item).prop('checked',false)
-          })
-      
-          $(this).addClass("choice_selected");
-          $(this).find('input[type=radio]').prop('checked',true)
-          }
-          
-      if(check_radio){
-          $(this).removeClass("choice_selected");
-         $(this).find('input[type=checkbox]').prop('checked',false)
-      }
-       
+    if(type == "radio"){
+        $(this).parents('.question-container').find('.choice_container').removeClass("choice_selected")
+        $(this).parents('.question-container').find('input[type=radio]').prop('checked',false)
+        $(this).addClass("choice_selected");
+        $(this).find('input[type=radio]').prop('checked',true)
+      }  
   });
   $("input[type=text]").attr("placeholder", "Cavabınızı daxil edin");
   $("body").css({ overflow: "hidden" });
@@ -122,34 +110,42 @@ $(() => {
   pres(this);
 
   $('#submitButton').click(function(){
-  let req = 0;
-  let success = false
-  $('[data-is_required="1"]').each((i,obj)=>{
-    let questionID = $('.question-container').eq(i).data('question_id');
-    let questionType = $(obj).data('question_type');
-      switch(questionType){
-        case 'input':
-          req+= $(`input[name="question_id[${questionID}]"]`).val().length > 0 ? 1 : 0;
-          break;
-        case 'textarea':
-          req+= $(`textarea[name="question_id[${questionID}]"]`).val().length > 0 ? 1 : 0;
-          break;
-        case 'radio':
-        case 'checkbox':
-          req+= $(`input[name="question_id[${questionID}][]"]:checked`).length;
-          break;
-      }
-      if(req == $('.question-container').length){
-        success = !success 
-      }
-      else{
-        success = false
-      }
-    })                                                                                                                                                                                   
-    if(!success){
-       alert('hamisini doldur')
-    }
-    else $('form').submit()
+  // let req = 0;
+  // let success = false;
+  // let questionRequired = $('[data-is_required="1"]');
+  //  questionRequired.each((i,obj)=>{
+  //   let questionID = $('.question-container').eq(i).data('question_id');
+  //   let questionType = $(obj).data('question_type');
+  //     switch(questionType){
+  //       case 'input':
+  //         req+= $(`input[name="question_id[${questionID}]"]`).val().length > 0 ? 1 : 0;
+  //         break;
+  //       case 'textarea':
+  //         req+= $(`textarea[name="question_id[${questionID}]"]`).val().length > 0 ? 1 : 0;
+  //         break;
+  //       case 'radio':
+  //       case 'checkbox':
+  //         req+= $(`input[name="question_id[${questionID}][]"]:checked`).length;
+  //         break;
+  //     }
+  //     if(req == questionRequired.length){
+  //       success = !success 
+  //     }
+  //     else{
+  //       success = false
+  //     }
+  //     if (questionRequired.length == 0) success = true;
+  //   })                                                                                                                                                                                    
+
+  //   if(!success){
+  //      alert('hamisini doldur')
+  //   }
+    // else {
+      let end = new Date()
+      let time = Math.trunc((end - start)/1000);
+      $('#time_elapsed').val(time)
+      $('form').submit()
+    // }
 })
 });
 
