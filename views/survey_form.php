@@ -24,6 +24,7 @@
             <input type="hidden" id="action" name="action" value="add_survey_response" />
             <input type="hidden" id="survey_id" name="survey_id" value="<?php echo htmlspecialchars($survey->survey_id); ?>" />
             <input type="hidden" id="time_elapsed" name="time_elapsed">
+            <input type="hidden" id="total" name="total">
             <div class="input_form big widelabels">
               <div class="container quiz-container">
               <?php foreach ($survey->questions as $i => $question): ?>

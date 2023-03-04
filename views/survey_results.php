@@ -14,7 +14,6 @@
 <body>
   <main>
     <div id="root">
-      
     <div id='dashboard-top'>
                     <div id="survey-nav">
                         <nav>
@@ -56,6 +55,8 @@
                             </span>
                         </div>
                     </div>
+                </div>
+                <div class="dashboard-bottom">
                 </div>
     </div>
   </main>

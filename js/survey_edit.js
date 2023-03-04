@@ -1,5 +1,5 @@
-var question_id_counter = 1;
-var choice_id_counter = 1;
+let question_id_counter = 1;
+let choice_id_counter = 1;
 renumberQuestions();
 
 /**
@@ -37,7 +37,7 @@ function getUniqueQuestionId()
  */
 function getUniqueChoiceId()
 {
-    return 'Choice' + choice_id_counter++;
+    return choice_id_counter++;
 }
 
 /**
@@ -70,15 +70,15 @@ function getUniqueChoiceId()
  choice_icon_check()
 function addChoice()
 {
-   var choices = $(this).parents('.question-container').find('.choices');
-    var questionID = $(this).parents('.question-container').data('question_id');
-    var choiceID = getUniqueChoiceId();
-    var newChoiceHtml = choiceHtml.replace(/QUESTION_ID/g, questionID).replace(/CHOICE_ID/g, choiceID);
+   let choices = $(this).parents('.question-container').find('.choices');
+    let questionID = $(this).parents('.question-container').data('question_id');
+    let choiceID = getUniqueChoiceId();
+    let newChoiceHtml = choiceHtml.replace(/QUESTION_ID/g, questionID).replace(/CHOICE_ID/g, 'Choice'+choiceID);
     choices.append(newChoiceHtml);
-    initDeleteChoiceButton('div.choice[data-choice_id="' + choiceID + '"] button.delete_choice');
+    initDeleteChoiceButton(`div.choice[data-choice_id="Choice${choiceID}"] button.delete_choice`);
     renumberChoices(questionID);
     // Focus on new choice text box
-    $('div.choice[data-choice_id="' + choiceID + '"] input.choice_text').focus();
+    $(`div.choice[data-choice_id="Choice${choiceID}"] input.choice_text`).focus();
     choice_alph()
     choice_icon_check()
     return false;
@@ -89,8 +89,8 @@ function addChoice()
  */
 function initAddQuestion()
 {
-    var questionID = getUniqueQuestionId();
-    var newQuestionHtml = questionHtml.replace(/QUESTION_ID/g, questionID);
+    let questionID = getUniqueQuestionId();
+    let newQuestionHtml = questionHtml.replace(/QUESTION_ID/g, questionID);
     return [questionID,newQuestionHtml];
 }
 
@@ -130,8 +130,8 @@ function deleteSurvey()
  */
 function deleteChoice()
 {
-    var questionID = $(this).parents('.question').data('question_id');
-    var choiceID = $(this).parents('div.choice').data('choice_id');
+    let questionID = $(this).parents('.question').data('question_id');
+    let choiceID = $(this).parents('div.choice').data('choice_id');
     $('div.choice[data-choice_id="' + choiceID + '"]').remove();
     renumberChoices(questionID);
     return false;
@@ -238,7 +238,7 @@ function renumberQuestions()
  */
 function moveQuestionUp()
 {
-    var question = $(this).parents('div.question');
+    let question = $(this).parents('div.question');
     if (question.prev().length > 0)
         question.prev().before(question);
     renumberQuestions();
@@ -251,7 +251,7 @@ function moveQuestionUp()
  */
 function moveQuestionDown()
 {
-    var question = $(this).parents('div.question');
+    let question = $(this).parents('div.question');
     if (question.next().length > 0)
         question.next().after(question);
     renumberQuestions();
@@ -275,7 +275,7 @@ function renumberChoices(questionID)
  */
 function questionTypeChange()
 {
-    var showChoices = false;
+    let showChoices = false;
 
     switch ($(this).val())
     {

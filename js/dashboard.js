@@ -8,7 +8,7 @@ $(() => {
             e.preventDefault();
         })
     });
-    $('.surveys-view > button').click(function(){
+    $('.surveys-view > button').click( function(){
         $('.surveys-view > button').removeClass('surveys-view-selected')
         $(this).addClass('surveys-view-selected')
     });
@@ -38,11 +38,11 @@ $(() => {
     //     //  $('.question_types').toggleClass('d-block')
     //     document.querySelector('.question_types').classList.toggle('d-block')
     // });
-
     let add_question = $("#add_question1");
     add_question.click(()=> {
         $('.question_types').toggleClass('d-block')
     });
+    let i = 1;
     function question_types(e){
         let [ new_question, bg_class] = addQuestionDuplicate();
         $('.questions-bar-body').append(new_question);
@@ -52,9 +52,9 @@ $(() => {
         let newqIcon = $(this).find('span:first-of-type > svg').clone()
         let newqIconClass = $(this).find('span:first-of-type').attr('class') 
         let newqLastIcon = lastQuesIconBox.attr('class').split(' ').slice(-1)
-        let qID = $('.question-container').eq(-1).data('question_id');
         lastQuesIconBox.removeClass(newqLastIcon)
         addQuestion();
+        let qID = $('.question-container').eq(-1).data('question_id');
         switch(newqIconClass) {
             case 'long-text-bg':
                 lastQuesIconBox.addClass('long-text-bg');
@@ -72,16 +72,18 @@ $(() => {
                 lastQuesIconBox.addClass('choice-bg');
                 lastQuesIconBox.find('span:first-of-type').html(newqIcon);
                 $('.question-container').eq(-1).find('select').val('radio');
+                let choiceID = getUniqueChoiceId()
                 $('.question-container').eq(-1).append(`<div class="choices_container">
                 <h4>Choices</h4>
-                <div class="choices" data-question_id="1">
-                                <div class="choice_start" data-choice_id="6" data-choice_number="1">
+                <div class="choices" data-question_id="Question${i}">
+                                <div class="choice_start" data-choice_id="Choice${choiceID}" data-choice_number>
                     <span class="question_choice">A</span> 
-                    <input type="text" class="choice_text" name="choice_text[1][6]" placeholder="Choice...">
+                    <input type="text" class="choice_text" name="choice_text[Question${i}][Choice${choiceID}]" placeholder="Choice...">
             </div>                                            </div>
                 <button class="add_choice" type="button">Add Choice</button>
               </div>`)
-                break;   
+              i++  
+                break; 
         }
         select_add(-1,[newqIcon,newqIconClass]);
         questions_bar_click();
@@ -96,6 +98,7 @@ $(() => {
         initQuestionDeleteButton('.delete_question');
         initQuestionSettings('.settings',newqIconClass);
         initAddChoiceButton(`div[data-question_id="${qID}"] button.add_choice`);
+        console.log(qID);
     }
 
    $("#current_user_right").click(function(){
@@ -288,11 +291,11 @@ $(() => {
       $(this).val() !== '' ? $('#submitButton').removeAttr('disabled','disabled') : $('#submitButton').attr('disabled','disabled')
   })
   $('.overlay').click( ()=> { $('#survey_add_container, .overlay').fadeOut("500") } )
-  function backHistory(e){ // History back function
-    e.preventDefault();
-    history.back();
-  }
-  $('#surveys').click(backHistory);
+//   function backHistory(e){ // History back function
+//     e.preventDefault();
+//     history.back();
+//   }
+//   $('#surveys').click(backHistory);
   function initcustomSelect(selector){
     // $(selector).each(item=>{
     //     let bg_class = $(item).find('.selection-box > span:first-of-type').attr('class');

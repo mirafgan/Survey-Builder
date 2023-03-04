@@ -30,6 +30,12 @@ data-question_number="<?php if (isset($i)) {
 } else {
     echo $question->getUniqueId();
 } ?>">
+      <?php if(empty($question->choices)) { 
+        echo
+       "<div class='choice_start' data-choice_id='Choice1' data-choice_number=''>
+        <span class='question_choice'>A</span> 
+        <input type='text' class='choice_text' name='choice_text[$question->question_id][Choice1]' value='' placeholder='Choice...'>
+</div>"; } ?>
       <?php if (! empty($question->choices)): ?>
       <?php foreach ($question->choices as $j => $choice): ?>
       <?php include 'survey_edit_choice.php'; ?>

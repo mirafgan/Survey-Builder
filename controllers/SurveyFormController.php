@@ -37,6 +37,9 @@ class SurveyFormController extends Controller
             case "time_elapsed":
                 $this->addSurveyResponse($request);
                 break;
+            case "total":
+                $this->addSurveyResponse($request);
+                break;
         }
     }
 
@@ -79,6 +82,8 @@ class SurveyFormController extends Controller
         $surveyResponse->survey_id = $survey->survey_id;
         $surveyResponse->time_taken = gmdate('Y-m-d H:i:s');
         $surveyResponse->time_elapsed = $request['time_elapsed'];
+        $surveyResponse->total = $request['total'];
+        $surveyResponse->device = $_SERVER["HTTP_USER_AGENT"];
         $surveyResponse->answers = [];
 
         if (! empty($request['question_id'])) {

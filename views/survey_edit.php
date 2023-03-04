@@ -32,7 +32,7 @@
                 <div id='dashboard-top'>
                     <div id="survey-nav">
                         <nav>
-                            <a href="" id="surveys">Surveys</a>/
+                            <a href="surveys.php" id="surveys">Surveys</a>/
                             <?php echo $survey->survey_name ?>
                         </nav>
                     </div>

@@ -34,6 +34,8 @@ CREATE TABLE survey_response (
     survey_id INTEGER NOT NULL,
     time_taken TEXT,
     time_elapsed TEXT,
+    total INTEGER NOT NULL,
+    device TEXT,
     FOREIGN KEY (survey_id) REFERENCES survey (survey_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 

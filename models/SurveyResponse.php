@@ -17,6 +17,8 @@ class SurveyResponse extends Model
         'survey_response_id',
         'survey_id',
         'time_taken',
-        'time_elapsed'
+        'time_elapsed',
+        'total',
+        'device'
     ];
 }
