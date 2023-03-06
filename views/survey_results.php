@@ -12,9 +12,9 @@
   <?php include 'scripts.php'; ?>
 </head>
 <body>
-  <main>
-    <div id="root">
-    <div id='dashboard-top'>
+  <div id="root">
+  
+    <header id='dashboard-top'>
                     <div id="survey-nav">
                         <nav>
                             <a href="" id="surveys">Surveys</a>/
@@ -55,11 +55,29 @@
                             </span>
                         </div>
                     </div>
-                </div>
+                </header>
+                <main>
                 <div class="dashboard-bottom">
+                  <div class="container">
+                    <div id="results">
+                      <div class="sort_options">
+                        <div class="date_select">
+                          <input type="date" name="" id="" />
+                          <select id="">
+
+                          </select>
+                        </div>
+                        <div class="device_select"></div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-    </div>
-  </main>
+            </div>
+          </main>
+
+
+
+
   <!-- <div id="main">
       <h1><?php echo htmlspecialchars($survey->survey_name); ?></h1>
       <div id="content">

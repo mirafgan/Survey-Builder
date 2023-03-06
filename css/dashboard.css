@@ -11,21 +11,6 @@ body {
   /* border: 25px solid #ecf0fd; */
 }
 
-header {
-  position: fixed;
-  z-index: 1;
-  height: calc(100vh - 50px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  /* position: relative; */
-  background-color: #060a32;
-  color: #ecf0fd;
-  padding: 0 20px;
-  border-radius: 25px 0 0 25px;
-}
-
 nav {
   height: 33.33%;
   display: flex;
@@ -1278,3 +1263,23 @@ span.question_choice {
   background: rgb(67, 67, 67);
 }
 /* Results */
+input[type="date"]{
+  position: relative;
+}
+input[type="date"]::-webkit-inner-spin-button{
+  display: none;
+}
+[type="date"]::-webkit-calendar-picker-indicator{
+  opacity: 0;
+  position: absolute;
+  right: 10px;
+}
+input[type="date"]::after{
+  content: "\f107";
+  text-align: end;
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  font-size: 0.75em;
+  padding-right: 10px;
+  color: #888;
+}

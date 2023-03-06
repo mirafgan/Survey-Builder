@@ -54,9 +54,9 @@ class SurveyFormController extends Controller
      */
     protected function getSurvey(&$request)
     {
-        if (! empty($request['survey_id'])) {
+        if (!empty($request['survey_id'])) {
             $survey = Survey::queryRecordById($this->pdo, $request['survey_id']);
-            if (! $survey) {
+            if (!$survey) {
                 throw new Exception('Survey ID not found in database');
             }
             $survey->getQuestions($this->pdo);
@@ -79,16 +79,17 @@ class SurveyFormController extends Controller
      */
     protected function setSurveyResponseValues(Survey $survey, SurveyResponse $surveyResponse, &$request)
     {
+        $userAgent = $_SERVER["HTTP_USER_AGENT"];
         $surveyResponse->survey_id = $survey->survey_id;
         $surveyResponse->time_taken = gmdate('Y-m-d H:i:s');
         $surveyResponse->time_elapsed = $request['time_elapsed'];
         $surveyResponse->total = $request['total'];
-        $surveyResponse->device = $_SERVER["HTTP_USER_AGENT"];
+        $surveyResponse->device = ((!strpos($userAgent, 'Mobile') && strpos($userAgent, 'Android')) ? 'Tablet' : strpos($userAgent, 'Mobile')) ? 'Mobile' : 'Desktop';
         $surveyResponse->answers = [];
 
-        if (! empty($request['question_id'])) {
+        if (!empty($request['question_id'])) {
             foreach ($request['question_id'] as $questionID => $answerArray) {
-                if (! is_array($answerArray)) {
+                if (!is_array($answerArray)) {
                     $answerArray = [$answerArray];
                 }
 
